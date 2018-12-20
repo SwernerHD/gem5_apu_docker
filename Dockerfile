@@ -43,7 +43,9 @@ ENV HSA_PATH ${ROCM_PATH}/hsa
 ENV HIP_PLATFORM hcc
 ENV PATH ${ROCM_PATH}/bin:${PATH}
 
-WORKDIR /sim   # /sim will be our home
+# make /sim our home directory 
+RUN mkdir -p sim
+WORKDIR "/sim"   
 
 # ==== Download gem5, apply patch, build GCN3_X86 ====
 # gem5 needs paths updated in configs/examples/apu_se.py and syscalls ignored in src/arch/x86/linux/process.cc 
@@ -67,5 +69,5 @@ RUN git clone https://github.com/AMDComputeLibraries/ComputeApps.git
 
 
 # other stuff from kyle 
-CMD bash
+#CMD bash
 
