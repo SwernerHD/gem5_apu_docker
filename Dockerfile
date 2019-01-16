@@ -55,6 +55,8 @@ RUN mv gem5_apu_patch/gem5_apu.patch .     # move actual patch file to current d
 RUN patch -s -p0 < gem5_apu.patch	   # apply patch to gem5 
 RUN rm -r gem5_apu_patch		   # clean up 
 RUN rm gem5_apu.patch			   # clean up 
+WORKDIR "/sim/gem5"
+RUN scons -sQ -j20 ./build/GCN3_X86/gem5.opt  # build gem5_apu with GCN3_X86 ISA
 
 # ==== Install and compile ComputeApps ====
 # Install some requires packages
